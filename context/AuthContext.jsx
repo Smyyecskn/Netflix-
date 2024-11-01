@@ -12,11 +12,11 @@ import {
 import { useRouter } from "next/navigation";
 import { createContext, useContext, useEffect, useState } from "react";
 import { auth } from "@/auth/firebase";
-// import {
-//   toastErrorNotify,
-//   toastSuccessNotify,
-//   toastWarnNotify,
-// } from "@/helpers/ToastNotify";
+import {
+  toastErrorNotify,
+  toastSuccessNotify,
+  toastWarnNotify,
+} from "@/helpers/ToastNotify";
 
 export const AuthContext = createContext();
 //* with custom hook
@@ -46,11 +46,11 @@ const AuthContextProvider = ({ children }) => {
         displayName: displayName,
       });
       router.push("/profile");
-      // toastSuccessNotify("Registered successfully!");
+      toastSuccessNotify("Registered successfully!");
       console.log(userCredential);
     } catch (err) {
-      // toastErrorNotify(err.message);
-      // alert(err.message);
+      toastErrorNotify(err.message);
+      alert(err.message);
     }
   };
 
@@ -66,18 +66,19 @@ const AuthContextProvider = ({ children }) => {
         password
       );
       router.push("/profile");
-      // toastSuccessNotify("Logged in successfully!");
+      toastSuccessNotify("Logged in successfully!");
       console.log(userCredential);
       // sessionStorage.setItem("user", JSON.stringify(userCredential.user));
     } catch (err) {
-      // toastErrorNotify(err.message);
+      toastErrorNotify(err.message);
       // alert(err.message);
     }
   };
 
   const logOut = () => {
     signOut(auth);
-    // toastSuccessNotify("Logged out successfully!");
+    toastSuccessNotify("Logged out successfully!");
+    router.push("/login");
   };
 
   const userObserver = () => {
@@ -111,7 +112,7 @@ const AuthContextProvider = ({ children }) => {
       .then((result) => {
         console.log(result);
         router.push("/profile");
-        // toastSuccessNotify("Logged in successfully!");
+        toastSuccessNotify("Logged in successfully!");
       })
       .catch((error) => {
         // Handle Errors here.
@@ -124,11 +125,11 @@ const AuthContextProvider = ({ children }) => {
     sendPasswordResetEmail(auth, email)
       .then(() => {
         // Password reset email sent!
-        // toastWarnNotify("Please check your mail box!");
+        toastWarnNotify("Please check your mail box!");
         // alert("Please check your mail box!");
       })
       .catch((err) => {
-        // toastErrorNotify(err.message);
+        toastErrorNotify(err.message);
         // alert(err.message);
         // ..
       });

@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-// import { useAuthContext } from "@/context/AuthContext";
+import { useAuthContext } from "@/context/AuthContext";
 import Link from "next/link";
 import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
@@ -10,13 +10,13 @@ function classNames(...classes) {
 }
 
 const Navbar = () => {
-  //   const { currentUser } = useAuthContext();
+  const { currentUser, logOut } = useAuthContext();
   const [showBackground, setShowBackground] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
       // console.log(window.scrollY);
-      const TOP_OFFSET = 50;
+      const TOP_OFFSET = 60;
       if (window.scrollY >= TOP_OFFSET) {
         setShowBackground(true);
       } else {
@@ -33,7 +33,7 @@ const Navbar = () => {
 
   //* with custom hook
   // const { currentUser } = useAuthContext();
-  const currentUser = { displayName: "smyye oztrk" };
+  //   const currentUser = { displayName: "felix franko" };
   // const currentUser = false;
 
   return (
