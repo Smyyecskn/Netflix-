@@ -71,7 +71,7 @@ const AuthContextProvider = ({ children }) => {
       // sessionStorage.setItem("user", JSON.stringify(userCredential.user));
     } catch (err) {
       toastErrorNotify(err.message);
-      // alert(err.message);
+      alert(err.message);
     }
   };
 

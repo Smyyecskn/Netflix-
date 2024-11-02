@@ -4,23 +4,21 @@ import GoogleIcon from "@/public/icons/GoogleIcon";
 import React, { useState } from "react";
 
 const Register = () => {
+  const { createUser, signUpProvider } = useAuthContext();
   const [info, setInfo] = useState({
     firstName: "",
     lastName: "",
     email: "",
     password: "",
   });
-  const { createUser, signUpProvider } = useAuthContext();
-
   const handleChange = (e) => {
     setInfo({ ...info, [e.target.name]: e.target.value });
-  }; //bu ınput değerlerini user oluştururken firebasee göndermeliyiz.
-  // console.log(info);
+  };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    const { firstName, lastName, email, password } = info;
+    const { email, password, firstName, lastName } = info;
     const displayName = `${firstName} ${lastName}`;
+    e.preventDefault();
     createUser(email, password, displayName);
   };
 
@@ -39,7 +37,7 @@ const Register = () => {
                   className="peer"
                   type="text"
                   required
-                  placeholder=""
+                  placeholder=" "
                   onChange={handleChange}
                 />
                 <label htmlFor="floating_text">First Name</label>
